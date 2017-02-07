@@ -7,7 +7,7 @@
         mc:Ignorable="d ignore"
         Height="300"
         Width="300"
-        Title="MVVM Light Application"
+        Title="To Do List"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     
     <Window.Resources>
@@ -19,14 +19,34 @@
     </Window.Resources>
 
     <Grid x:Name="LayoutRoot">
-
-        <TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" />
-
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New List"/>
+                    <MenuItem Header="_Exit"/>
+                </MenuItem>
+            </Menu>
+            <TabControl ItemsSource="{Binding ToDoLists}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ListView ItemsSource="{Binding Items}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <CheckBox IsChecked="{Binding Complete}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+        </DockPanel>
     </Grid>
 </Window>

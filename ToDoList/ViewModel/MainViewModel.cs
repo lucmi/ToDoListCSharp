@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
 using ToDoList.Model;
 
 namespace ToDoList.ViewModel
@@ -11,48 +12,35 @@ namespace ToDoList.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly IDataService _dataService;
+        private readonly IToDoListDataService _dataService;
+        private ObservableCollection<Model.ToDoList> _toDoLists;
 
-        /// <summary>
-        /// The <see cref="WelcomeTitle" /> property's name.
-        /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
-
-        private string _welcomeTitle = string.Empty;
-
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public string WelcomeTitle
+        public ObservableCollection<Model.ToDoList> ToDoLists
         {
-            get
-            {
-                return _welcomeTitle;
-            }
+            get { return _toDoLists; }
             set
             {
-                Set(ref _welcomeTitle, value);
+                Set(ref _toDoLists, value);
             }
         }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel(IToDoListDataService dataService)
         {
             _dataService = dataService;
-            _dataService.GetData(
+            _dataService.GetToDoLists(
                 (item, error) =>
                 {
-                    if (error != null)
+                    if(error != null)
                     {
-                        // Report error here
+                        //do something here about errors
                         return;
                     }
-
-                    WelcomeTitle = item.Title;
-                });
+                    ToDoLists = item;
+                }
+            );
         }
 
         ////public override void Cleanup()

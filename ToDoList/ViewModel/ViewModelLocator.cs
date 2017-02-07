@@ -36,6 +36,7 @@ namespace ToDoList.ViewModel
             else
             {
                 SimpleIoc.Default.Register<IDataService, DataService>();
+                SimpleIoc.Default.Register<IToDoListDataService, ToDoListTestDataService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();

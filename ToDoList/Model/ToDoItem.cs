@@ -2,7 +2,7 @@
 
 namespace ToDoList.Model
 {
-    class ToDoItem
+    public class ToDoItem
     {
         private DateTime? _dueDate;
         private string _name;
@@ -17,7 +17,7 @@ namespace ToDoList.Model
 
         public string Name
         {
-            get { return Name; }
+            get { return _name; }
             set { _name = value; }
         }
 

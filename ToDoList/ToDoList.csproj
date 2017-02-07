@@ -79,8 +79,10 @@
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
+    <Compile Include="Model\IToDoListDataService.cs" />
     <Compile Include="Model\ToDoItem.cs" />
     <Compile Include="Model\ToDoList.cs" />
+    <Compile Include="Model\ToDoListTestDataService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">

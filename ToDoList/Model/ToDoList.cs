@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace ToDoList.Model
 {
-    class ToDoList
+    public class ToDoList
     {
         private string _name;
         private DateTime _created;
@@ -31,6 +31,12 @@ namespace ToDoList.Model
                 }
                 return _items;
             }
+        }
+
+        public ToDoList(string name)
+        {
+            Name = name;
+            _created = DateTime.Now;
         }
     }
 }
