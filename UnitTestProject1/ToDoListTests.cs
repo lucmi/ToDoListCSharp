@@ -10,8 +10,15 @@ namespace UnitTests
         [TestMethod]
         public void TestToDoListCreate()
         {
-            var list = new ToDoList.Model.ToDoList("Test List");
-            Assert.IsInstanceOfType(list, typeof(ToDoList.Model.ToDoList));
+            try
+            {
+                var list = new ToDoList.Model.ToDoList("Test List");
+                Assert.AreEqual("Test List", list.Name);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
@@ -28,6 +35,7 @@ namespace UnitTests
         {
             var list = new ToDoList.Model.ToDoList("Test List");
             Assert.IsNotNull(list.Created);
+            Assert.AreEqual(DateTime.Now, list.Created);
         }
     }
 }

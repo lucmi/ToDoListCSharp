@@ -22,7 +22,6 @@ namespace ToDoList.Model
 
         public ObservableCollection<ToDoItem> Items
         {
-            set { _items = value; }
             get
             {
                 if (_items == null)

@@ -10,22 +10,31 @@ namespace UnitTests
         [TestMethod]
         public void TestCreateNamedToDoItem()
         {
-            var item = new ToDoItem(name: "Test Item");
-            Assert.IsNotNull(item);
+            try
+            {
+                var item = new ToDoItem(name: "Test Item");
+                Assert.AreEqual("Test Item", item.Name);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            
+            
         }
 
         [TestMethod]
         public void TestCreateNamedDueDateToDoItem()
         {
-            var item = new ToDoItem(name: "Test Item", dueDate: new DateTime(2017,1,1));
-            Assert.IsNotNull(item);
-        }
-
-        [TestMethod]
-        public void TestItemIsNamedCorrectly()
-        {
-            var item = new ToDoItem(name: "Test Item");
-            Assert.AreEqual("Test Item", item.Name);
+            try
+            {
+                var item = new ToDoItem(name: "Test Item", dueDate: new DateTime(2017, 1, 1));
+                Assert.AreEqual(new DateTime(2017, 1, 1), item.DueDate);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
