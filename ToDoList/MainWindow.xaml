@@ -9,7 +9,7 @@
         Width="300"
         Title="To Do List"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,16 +22,12 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
+                    <MenuItem Header="New _Item"/>
                     <MenuItem Header="_New List"/>
                     <MenuItem Header="_Exit"/>
                 </MenuItem>
             </Menu>
-            <TabControl ItemsSource="{Binding ToDoLists}">
-                <TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
+            <TabControl>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
                         <ListView ItemsSource="{Binding Items}">

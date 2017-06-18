@@ -15,6 +15,8 @@ namespace ToDoList.ViewModel
         private readonly IToDoListDataService _dataService;
         private ObservableCollection<Model.ToDoList> _toDoLists;
 
+        //TODO: Add commands in here for the menu items to bind to (Add new Item, add new List and exit)
+
         public ObservableCollection<Model.ToDoList> ToDoLists
         {
             get { return _toDoLists; }
@@ -35,7 +37,7 @@ namespace ToDoList.ViewModel
                 {
                     if(error != null)
                     {
-                        //do something here about errors
+                        //TODO: do something here about errors
                         return;
                     }
                     ToDoLists = item;
