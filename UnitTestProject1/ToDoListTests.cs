@@ -37,5 +37,15 @@ namespace UnitTests
             Assert.IsNotNull(list.Created);
             Assert.AreEqual(DateTime.Now, list.Created);
         }
+
+        [TestMethod]
+        public void TestToDoListCreateItemCommand()
+        {
+            var list = new ToDoList.Model.ToDoList("Test List");
+            Assert.AreEqual(0, list.Items.Count); //there should be no items in this list
+            list.NewItem.Execute(null);
+            Assert.AreEqual(1, list.Items.Count); //check that there is now 1 item in this list
+        }
+
     }
 }

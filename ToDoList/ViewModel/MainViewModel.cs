@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using ToDoList.Model;
 
@@ -14,8 +15,16 @@ namespace ToDoList.ViewModel
     {
         private readonly IToDoListDataService _dataService;
         private ObservableCollection<Model.ToDoList> _toDoLists;
+        private RelayCommand _newList;
 
         //TODO: Add commands in here for the menu items to bind to (Add new Item, add new List and exit)
+        public RelayCommand NewList
+        {
+            get
+            {
+                return _newList ?? (_newList = new RelayCommand(() => CreateNewList()));
+            }
+        }
 
         public ObservableCollection<Model.ToDoList> ToDoLists
         {
@@ -43,6 +52,11 @@ namespace ToDoList.ViewModel
                     ToDoLists = item;
                 }
             );
+        }
+
+        private void CreateNewList()
+        {
+            ToDoLists.Add(new Model.ToDoList("New List"));
         }
 
         ////public override void Cleanup()

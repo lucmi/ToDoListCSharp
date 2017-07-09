@@ -11,7 +11,7 @@ namespace ToDoList.Model
         {
             ObservableCollection<ToDoList> lists = new ObservableCollection<ToDoList>();
             ToDoList list = new ToDoList("Test List");
-            list.Items.Add(new ToDoItem(name: "Test One"));
+            list.Items.Add(new ToDoItem(name: "Test One",dueDate: DateTime.Now));
             lists.Add(list);
             callback(lists, null);
         }

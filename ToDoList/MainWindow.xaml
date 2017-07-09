@@ -22,24 +22,32 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="New _Item"/>
-                    <MenuItem Header="_New List"/>
+                    <MenuItem Header="_New List" Command="{Binding NewList}"/>
                     <MenuItem Header="_Exit"/>
                 </MenuItem>
             </Menu>
-            <TabControl>
+            <TabControl ItemsSource="{Binding ToDoLists}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <ListView ItemsSource="{Binding Items}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <CheckBox IsChecked="{Binding Complete}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                        <StackPanel Orientation="Vertical">
+                            <ListView ItemsSource="{Binding Items}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding Name}"/>
+                                            <DatePicker SelectedDate="{Binding DueDate}"></DatePicker>
+                                            <CheckBox IsChecked="{Binding Complete}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button Command="{Binding NewItem}">New Item</Button>
+                        </StackPanel>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>

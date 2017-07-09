@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.ObjectModel;
 
 namespace ToDoList.Model
@@ -8,6 +9,7 @@ namespace ToDoList.Model
         private string _name;
         private DateTime _created;
         private ObservableCollection<ToDoItem> _items;
+        private RelayCommand _newItem;
 
         public string Name
         {
@@ -36,6 +38,19 @@ namespace ToDoList.Model
         {
             Name = name;
             _created = DateTime.Now;
+        }
+
+        public RelayCommand NewItem
+        {
+            get
+            {
+                return _newItem ?? (_newItem = new RelayCommand(() => CreateNewItem()));
+            }
+        }
+
+        private void CreateNewItem()
+        {
+            Items.Add(new ToDoItem("New Item"));
         }
     }
 }
